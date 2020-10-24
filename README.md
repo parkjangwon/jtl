@@ -7,6 +7,8 @@ _If you build by platform yourself, golang must be installed._
 # Install
 ```bash
 git clone https://github.com/parkjangwon/jtl.git
+go get github.com/asaskevich/govalidator
+go get github.com/reiver/go-telnet
 
 # for linux x86_64
 env GOOS=linux GOARCH=amd64 go build -v jtl.go
