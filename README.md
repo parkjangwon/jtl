@@ -4,8 +4,14 @@ Useful command line tool for developers
 # Build & Install
 ```bash
 go get github.com/parkjangwon/jtl
-go get github.com/asaskevich/govalidator
-go get github.com/reiver/go-telnet
+go build jtl.go
+
+cp ./jtl /usr/local/bin; chmod a+x /usr/local/bin/jtl
+```
+
+# If you want to build on a different platform
+```bash
+go get github.com/parkjangwon/jtl
 
 # for linux x86_64
 cd $GOPATH/src/github.com/parkjangwon/jtl
