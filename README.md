@@ -1,10 +1,7 @@
 # jtl
 Useful command line tool for developers
 
-# Build
-_If you build by platform yourself, golang must be installed._
-
-# Install
+# Build & Install
 ```bash
 git clone https://github.com/parkjangwon/jtl.git
 go get github.com/asaskevich/govalidator
