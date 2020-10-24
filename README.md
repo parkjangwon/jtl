@@ -3,11 +3,12 @@ Useful command line tool for developers
 
 # Build & Install
 ```bash
-git clone https://github.com/parkjangwon/jtl.git
+go get github.com/parkjangwon/jtl
 go get github.com/asaskevich/govalidator
 go get github.com/reiver/go-telnet
 
 # for linux x86_64
+cd $GOPATH/src/github.com/parkjangwon/jtl
 env GOOS=linux GOARCH=amd64 go build -v jtl.go
 
 cp ./jtl /usr/local/bin; chmod a+x /usr/local/bin/jtl
