@@ -1,2 +1,2 @@
 # for linux x86_64
-env GOOS=linux GOARCH=amd64 go build -v jtool.go
+env GOOS=linux GOARCH=amd64 go build -v jtl.go

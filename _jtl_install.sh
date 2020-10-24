@@ -1,2 +1,2 @@
 #!bin/bash
-cp ./jtool /usr/local/bin; chown root:root /usr/local/bin/jtool; chmod a+x /usr/local/bin/jtool
+cp ./jtl /usr/local/bin; chown root:root /usr/local/bin/jtl; chmod a+x /usr/local/bin/jtl
