@@ -3,21 +3,21 @@ Useful command line tool for developers
 
 # Build & Install
 ```bash
-go get github.com/parkjangwon/jtl
-go build jtl.go
-
-cp ./jtl /usr/local/bin; chmod a+x /usr/local/bin/jtl
+go get github.com/parkjangwon/jtl;
+cd $GOPATH/src/github.com/parkjangwon/jtl;
+go build jtl.go;
+# cp ./jtl /usr/local/bin; chmod a+x /usr/local/bin/jtl
 ```
 
 # If you want to build on a different platform
 ```bash
-go get github.com/parkjangwon/jtl
+go get github.com/parkjangwon/jtl;
 
 # for linux x86_64
-cd $GOPATH/src/github.com/parkjangwon/jtl
+cd $GOPATH/src/github.com/parkjangwon/jtl;
 env GOOS=linux GOARCH=amd64 go build -v jtl.go
 
-cp ./jtl /usr/local/bin; chmod a+x /usr/local/bin/jtl
+# cp ./jtl /usr/local/bin; chmod a+x /usr/local/bin/jtl
 ```
 
 # How to Usage
