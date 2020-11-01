@@ -33,7 +33,7 @@ jtl <command> [arguments]
 jtl v
 jtl version "0.0.2"
 
-or..
+or
 
 jtl version
 jtl version "0.0.2"
