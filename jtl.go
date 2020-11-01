@@ -3,11 +3,16 @@ package main
 import (
 	b64 "encoding/base64"
 	"fmt"
+	"net"
 	"os"
 	"strings"
 
+	"code.cloudfoundry.org/bytefmt"
 	valid "github.com/asaskevich/govalidator"
+	"github.com/mackerelio/go-osstat/memory"
+	"github.com/matishsiao/goInfo"
 	"github.com/reiver/go-telnet"
+	"github.com/shirou/gopsutil/load"
 )
 
 func main() {
@@ -70,13 +75,38 @@ Usage:
            tel       This is a telnet client. argument must in the form "host:port".
                      Only supported PLAIN communication, SSL, TLS communication is not supported.
                      When you exit the shell "Ctrl + c" or after the connection is closed, press "Enter twice".
+           sys       Outputs the OS platform Information. [ Kernel, Core, Platform, OS, Hostname, CPUs, Loadavg, Ip(Only Local IPV4), Memory ]
+                     No require arguments
+
 
 `)
 		case "version":
-			fmt.Println("jtl version \"0.0.1\"")
+			fmt.Println("jtl version \"0.0.2\"")
 
 		case "v":
-			fmt.Println("jtl version \"0.0.1\"")
+			fmt.Println("jtl version \"0.0.2\"")
+
+		case "sys":
+			// fmt.Println("[@command]", args[0], args[1])
+			gi := goInfo.GetInfo()
+			gi.VarDump()
+			fmt.Println("Ip (Local):", GetLocalIP())
+
+			memory, err := memory.Get()
+
+			if err != nil {
+				fmt.Println("[@command]", args[0], args[1])
+				fmt.Fprintf(os.Stderr, "%s\n", err)
+				return
+			}
+
+			load, _ := load.Avg()
+			fmt.Println("Loadavg (1m, 5m, 15m):", fmt.Sprintf("%.2f", load.Load1), fmt.Sprintf("%.2f", load.Load5), fmt.Sprintf("%.2f", load.Load15))
+
+			fmt.Printf("Memory (Total): %d MB\n", memory.Total/bytefmt.MEGABYTE)
+			fmt.Printf("Memory (Used): %d MB\n", memory.Used/bytefmt.MEGABYTE)
+			fmt.Printf("Memory (Cached): %d MB\n", memory.Cached/bytefmt.MEGABYTE)
+			fmt.Printf("Memory (Free): %d MB\n", memory.Free/bytefmt.MEGABYTE)
 
 		default:
 			fmt.Println("[@command]", args[0], args[1])
@@ -88,4 +118,20 @@ Usage:
 		fmt.Println("Run 'jtl help' for usage.")
 	}
 
+}
+
+func GetLocalIP() string {
+	addrs, err := net.InterfaceAddrs()
+	if err != nil {
+		return ""
+	}
+	for _, address := range addrs {
+		// check the address type and if it is not a loopback the display it
+		if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+			if ipnet.IP.To4() != nil {
+				return ipnet.IP.String()
+			}
+		}
+	}
+	return ""
 }
