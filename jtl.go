@@ -76,7 +76,7 @@ Usage:
                      Only supported PLAIN communication, SSL, TLS communication is not supported.
                      When you exit the shell "Ctrl + c" or after the connection is closed, press "Enter twice".
            sys       Outputs the OS platform Information. [ Kernel, Core, Platform, OS, Hostname, CPUs, Loadavg, Ip(Only Local IPV4), Memory ]
-                     No require arguments
+                     No require arguments.
 
 
 `)
