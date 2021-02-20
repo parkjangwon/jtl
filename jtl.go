@@ -79,7 +79,8 @@ Usage:
                      No require arguments.
 
 
-`)
+
+										 `)
 		case "version":
 			fmt.Println("jtl version \"0.0.2\"")
 
